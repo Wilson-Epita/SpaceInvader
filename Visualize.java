@@ -1,24 +1,33 @@
 public class Visualize
 {
-	public static void drawGame()
+	private int w, h;
+
+	public Visualize(int width, int height)
+	{
+		w = width;
+		h = height;
+		initWindow();
+	}
+
+	public void drawGame()
 	{
 		StdDraw.clear();
 		drawGameBackground();
 	}
 
-	public static void drawMenu()
+	public void drawMenu()
 	{
 	
 	}
 
-	public static void initWindow(int w, int h)
+	public void initWindow()
 	{
 		StdDraw.setCanvasSize(w, h);
 		StdDraw.setXscale(-w/2, w/2);
 		StdDraw.setYscale(0, h);
 	}
 	
-	private static void drawGameBackground()
+	private void drawGameBackground()
 	{
 		StdDraw.picture(0, 400, "img/black_background.jpg");
 	}
