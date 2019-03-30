@@ -6,12 +6,14 @@ public class Invaders
 		
 
 		// Initialisation :
-		Visualize display = new Visualize(800, 600);
+		Player player = new Player(5, 90, 60);
+		Visualize display = new Visualize(800, 800, player);
 		boolean stop = false;
 
 		// Game loop :
 		while (!stop)
 		{
+			player.comportement();
 			display.drawGame();
 			StdDraw.show(10);
 		}
