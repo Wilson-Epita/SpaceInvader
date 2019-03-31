@@ -106,4 +106,17 @@ public class Laser
 
 		return (res);
 	}
+
+	public static boolean allUnused(Laser[] lasers)
+	{
+		boolean res = true;
+		int i = 0;
+
+		while(res && i < lasers.length)
+		{
+			res = !lasers[i].isUsed;
+			i++;
+		}
+		return (res);
+	}
 }

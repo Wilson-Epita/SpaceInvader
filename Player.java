@@ -89,6 +89,7 @@ public class Player
 	public void comportement(Alien[][] aliens)
 	{
 		spaceRealeased |= !StdDraw.isKeyPressed(KeyEvent.VK_SPACE);
+		spaceRealeased |= Laser.allUnused(lasers);
 
 		if (StdDraw.isKeyPressed(KeyEvent.VK_LEFT))
 			this.moveLeft();
