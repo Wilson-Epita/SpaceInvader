@@ -7,6 +7,7 @@ public class Player
 	private double	speed;
 	private int		w, h;
 	private int		minPos, maxPos;
+	private boolean spaceRealeased;
 	private Laser[]	lasers;
 
 	// Constructor :
@@ -15,10 +16,11 @@ public class Player
 		this.w = width;
 		this.h = height;
 		this.speed = speed;
+		spaceRealeased = true;
 		y = 60;
 		maxPos = 400 - (int)(0.5 * width);
 		minPos = -maxPos;
-		lasers = Laser.initLasers(1, 5, 4.0);
+		lasers = Laser.initLasers(3, 1, 20.0);
 	}
 
 	// Getters & Setters :
@@ -69,7 +71,7 @@ public class Player
 		{
 			if(!lasers[i].isUsed())
 			{
-				lasers[i].shot(x, y - h);
+				lasers[i].shot(x, y + h / 2);
 				done = true;
 			}
 			i++;
@@ -86,12 +88,17 @@ public class Player
 	// Control :
 	public void comportement(Alien[][] aliens)
 	{
+		spaceRealeased |= !StdDraw.isKeyPressed(KeyEvent.VK_SPACE);
+
 		if (StdDraw.isKeyPressed(KeyEvent.VK_LEFT))
 			this.moveLeft();
 		if (StdDraw.isKeyPressed(KeyEvent.VK_RIGHT))
 			this.moveRight();
-		if (StdDraw.isKeyPressed(KeyEvent.VK_SPACE))
+		if (StdDraw.isKeyPressed(KeyEvent.VK_SPACE) && spaceRealeased)
+		{
 			this.fire();
+			spaceRealeased = false;
+		}
 
 		for (int i = 0; i < lasers.length; i++)
 		{
